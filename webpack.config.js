@@ -7,11 +7,14 @@ function getLoaders() {
         query: {
             presets: ['react', 'es2015']
         }
+    }, {
+        test: /\.scss$/,
+        loader: "style!css!sass"
     }]
 }
 
 var mainConfig = {
-    entry: './src/js/entry.jsx',
+    entry: ['./src/js/entry.jsx', "./src/css/main.scss"],
     output: {
         path: __dirname,
         filename: '/assets/client.js',

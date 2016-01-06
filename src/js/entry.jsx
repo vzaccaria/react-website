@@ -1,36 +1,23 @@
-require("gl-react/react");
-
 const React = require("react");
-const ReactDOM = require("react-dom")
-const GL = require("gl-react");
-const {Surface} = require("gl-react-dom");
+const ReactDOM = require("react-dom");
+import { App, Page, Section, Hero, Navbar, Team, TeamMember, PricingTable, PricingPlan, HorizontalSplit } from "neal-react";
 
-const shaders = GL.Shaders.create({
-    helloGL: {
-        frag: `
-precision highp float;
-varying vec2 uv; // This variable vary in all pixel position (normalized from vec2(0.0,0.0) to vec2(1.0,1.0))
+global.jQuery = require('jQuery');
 
-void main () { // This function is called FOR EACH PIXEL
-  gl_FragColor = vec4(uv.x, uv.y, 0.5, 1.0); // red vary over X, green vary over Y, blue is 50%, alpha is 100%.
-}
-    `
-    }
-});
-
-let HelloGL = GL.createComponent(
-    () => {
-        return (
-            <GL.Node shader={shaders.helloGL} />
-        );
-    },
-    { displayName: "HelloGL" });
+let page = (
+    <Hero backgroundImage={require("file!../img/lp_background_darken.jpg")}
+        className="text-xs-center">
+        <h1 className="display-4"> Declarative Landing Pages for React.js </h1>
+        <p className="lead">Build a beautiful landing page in less than an hour.
+          No more redundant code. Easily extensible.</p>
+        <p>
+          <a href="https://github.com/dennybritz/neal-react" target="_blank" className="btn btn-white">
+            Get it on Github
+          </a>
+        </p>
+    </Hero>
+)
 
 
 
-let componentToRender = (
-    <Surface width={300} height={200}>
-        <HelloGL />
-    </Surface>);
-
-ReactDOM.render(componentToRender, document.getElementById("container"));
+ReactDOM.render(page, document.getElementById("container"));
